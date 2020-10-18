@@ -23,13 +23,16 @@
       <!-- -->
     </v-app-bar>
     <v-main>
-      <ManageGatherings />
+      <ManageGatherings
+        :gatherings="gatherings"
+         />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import ManageGatherings from "@/views/ManageGatherings.vue";
+import { Event } from "@/event.js";
 export default {
   name: "App",
 
@@ -44,11 +47,12 @@ export default {
   },
 
   data: () => ({
-    gathering: {
-      id: "sample-uuid",
-      title: "Rehearsal",
-      starts: "2020-01-01",
-    },
+    gatherings: [
+      Event.fromISO("Event 1", "2020-10-01T20:00+0200", "2020-10-01T22:00+0200"),
+      Event.fromISO("Event 2", "2020-10-07T20:00+0200", "2020-10-07T22:00+0200"),
+      Event.fromISO("Event 3", "2020-10-14T20:00+0200", "2020-10-12T22:00+0200"),
+      Event.fromISO("Event 4", "2020-10-22T20:00+0200", "2020-10-22T22:00+0200"),
+    ]
   }),
 };
 </script>

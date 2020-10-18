@@ -1,19 +1,16 @@
 <template>
-  <v-calendar :events="events"> </v-calendar>
+  <v-calendar :events="gatherings"> </v-calendar>
 </template>
 
 <script>
 export default {
   name: "Calendar",
   props: {
-    events: {
+    gatherings: {
       type: Array,
       required: true,
     },
   },
   data: () => ({}),
-  created() {
-    console.log(this.events);
-  },
 };
 </script>

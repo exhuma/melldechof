@@ -1,10 +1,10 @@
 <template>
   <v-list>
-    <v-list-item two-line v-for="event in events" :key="event.id">
+    <v-list-item two-line v-for="gathering in gatherings" :key="gathering.id">
       <v-list-item-content>
-        <v-list-item-title>{{ event.name }}</v-list-item-title>
+        <v-list-item-title>{{ gathering.name }}</v-list-item-title>
         <v-list-item-subtitle
-          >{{ toString(event.start) }} - {{ toString(event.end) }}</v-list-item-subtitle
+          >{{ toString(gathering.start) }} - {{ toString(gathering.end) }}</v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -23,7 +23,7 @@ export default {
     },
   },
   props: {
-    events: {
+    gatherings: {
       type: Array,
       required: true,
     },
