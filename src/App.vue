@@ -23,22 +23,17 @@
       <!-- -->
     </v-app-bar>
     <v-main>
-      <ManageGatherings
+      <router-view 
         :gatherings="gatherings"
-         />
+        />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import ManageGatherings from "@/views/ManageGatherings.vue";
 import { Storage } from "@/storage.js";
 export default {
   name: "App",
-
-  components: {
-    ManageGatherings,
-  },
 
   methods: {
     setPresence: function (payload) {
