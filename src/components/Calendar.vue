@@ -1,5 +1,5 @@
 <template>
-  <v-calendar :events="gatherings"> </v-calendar>
+  <v-calendar color="primary" :events="gatherings"> </v-calendar>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app permanent>
+    <v-navigation-drawer app>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">Mell Dech Of</v-list-item-title>
@@ -32,7 +32,7 @@
 
 <script>
 import ManageGatherings from "@/views/ManageGatherings.vue";
-import { Event } from "@/event.js";
+import { Storage } from "@/storage.js";
 export default {
   name: "App",
 
@@ -47,12 +47,13 @@ export default {
   },
 
   data: () => ({
-    gatherings: [
-      Event.fromISO("Event 1", "2020-10-01T20:00+0200", "2020-10-01T22:00+0200"),
-      Event.fromISO("Event 2", "2020-10-07T20:00+0200", "2020-10-07T22:00+0200"),
-      Event.fromISO("Event 3", "2020-10-14T20:00+0200", "2020-10-12T22:00+0200"),
-      Event.fromISO("Event 4", "2020-10-22T20:00+0200", "2020-10-22T22:00+0200"),
-    ]
+    gatherings: []
   }),
+
+  created () {
+    this.storage = new Storage()
+    this.storage.loadGatherings()
+    this.gatherings = this.storage.gatherings
+  }
 };
 </script>
