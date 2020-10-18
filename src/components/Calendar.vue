@@ -12,8 +12,8 @@ export default {
     },
   },
   data: () => ({}),
-  created () {
-      console.log(this.events)
-  }
+  created() {
+    console.log(this.events);
+  },
 };
 </script>

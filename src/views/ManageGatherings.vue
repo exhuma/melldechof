@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <Calendar :events="events" />
-    <GatheringList />
+    <GatheringList :events="events" />
   </v-container>
 </template>
 
