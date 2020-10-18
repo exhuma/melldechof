@@ -31,7 +31,7 @@
 <script>
 import ManageGatherings from "@/views/ManageGatherings.vue";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     ManageGatherings,
@@ -39,16 +39,16 @@ export default {
 
   methods: {
     setPresence: function (payload) {
-      console.log(payload)
-    }
+      console.log(payload);
+    },
   },
 
   data: () => ({
     gathering: {
-      id: 'sample-uuid',
-      title: 'Rehearsal',
-      starts: '2020-01-01',
-    }
+      id: "sample-uuid",
+      title: "Rehearsal",
+      starts: "2020-01-01",
+    },
   }),
 };
 </script>
