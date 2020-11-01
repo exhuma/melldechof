@@ -30,6 +30,7 @@
       ref="calendar"
       color="primary"
       v-model="date"
+      :weekdays="[1, 2, 3, 4, 5, 6, 0]"
       :events="gatherings"></v-calendar>
   </v-sheet>
 </template>
