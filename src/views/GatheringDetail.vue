@@ -1,30 +1,49 @@
 <template>
-  <v-card>
-    <v-card-title> {{ gathering.name }}</v-card-title>
-    <v-card-text>
-      {{ gathering.start }}<br />
-      {{ gathering.end }}
-    </v-card-text>
-  </v-card>
+  <v-sheet>
+    <v-card>
+      <v-card-title> {{ gathering.name }}</v-card-title>
+      <v-card-text>
+        {{ gathering.start }}<br />
+        {{ gathering.end }}
+      </v-card-text>
+    </v-card>
+    <v-data-table
+        :headers="headers"
+        :items="tableItems"
+        class="elevation-1"
+      ></v-data-table>
+  </v-sheet>
 </template>
 
 <script>
 export default {
   name: "GatheringDetail",
-  data: () => ({}),
+  data: () => ({
+    headers: [
+      {text: 'Name', value: 'name'},
+      {text: 'Presence', value: 'presence'},
+    ],
+  }),
   props: {
     gatherings: {
       type: Array,
       required: true,
     },
+    presenceList: {
+      type: Object,
+      required: true
+    }
   },
   computed: {
+    tableItems: function () {
+      return this.presenceList[this.$route.params.id]
+    },
     gathering: function () {
       let gathering = this.gatherings.find(
         (element) => element.id === this.$route.params.id
       );
       return gathering;
-    },
+    }
   },
 };
 </script>

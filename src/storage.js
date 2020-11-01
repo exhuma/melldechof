@@ -16,8 +16,13 @@ function convertIcs(ics) {
 }
 
 export class Storage {
+
+  static PRESENT = 'present'
+  static ABSENT = 'absent'
+
   constructor() {
     this.gatherings = [];
+    this.presenceList = {};
   }
 
   loadGatherings() {
@@ -40,5 +45,23 @@ export class Storage {
 
   addGathering(name, start, end) {
     this.gatherings.push(new Event(name, start, end));
+  }
+
+  loadPresences () {
+    this.presenceList = {
+      '4oatu5678cld8gfh0euluj3ip3@google.com': [
+        {name: 'user-1', presence: Storage.PRESENT},
+        {name: 'user-2', presence: Storage.PRESENT},
+        {name: 'user-3', presence: Storage.PRESENT},
+      ],
+      '5e1ouudn8cc3sr1atbqqi3dvon@google.com': [
+        {name: 'user-1', presence: Storage.PRESENT},
+        {name: 'user-2', presence: Storage.PRESENT},
+        {name: 'user-3', presence: Storage.ABSENT},
+        {name: 'user-4', presence: Storage.ABSENT},
+        {name: 'user-5', presence: Storage.PRESENT},
+        {name: 'user-6', presence: Storage.ABSENT},
+      ]
+    }
   }
 }

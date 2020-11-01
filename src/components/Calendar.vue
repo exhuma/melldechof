@@ -26,6 +26,7 @@
       ref="calendar"
       color="primary"
       v-model="date"
+      @click:event="onEventClicked"
       :weekdays="[1, 2, 3, 4, 5, 6, 0]"
       :events="gatherings"></v-calendar>
   </v-sheet>
@@ -51,6 +52,9 @@ export default {
     goToToday () {
       const today = DateTime.fromJSDate(new Date())
       this.date = today.toISODate()
+    },
+    onEventClicked ({event}) {
+      this.$router.push(`gathering/${event.id}`)
     },
   },
   created () {

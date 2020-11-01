@@ -23,8 +23,9 @@
       <!-- -->
     </v-app-bar>
     <v-main>
-      <router-view 
+      <router-view
         :gatherings="gatherings"
+        :presenceList="presenceList"
         />
     </v-main>
   </v-app>
@@ -48,7 +49,9 @@ export default {
   created () {
     this.storage = new Storage()
     this.storage.loadGatherings()
+    this.storage.loadPresences()
     this.gatherings = this.storage.gatherings
+    this.presenceList = this.storage.presenceList
   }
 };
 </script>
