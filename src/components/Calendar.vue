@@ -1,11 +1,8 @@
 <template>
   <v-sheet>
-    <center><h1>{{ currentDateLocalised }}</h1></center>
-    <v-sheet
-        tile
-        height="54"
-        class="d-flex"
-      >
+    <v-sheet height="64">
+      <v-toolbar flat>
+        <v-btn @click="goToToday()" outlined class="mr-4">Today</v-btn>
         <v-btn
           icon
           class="ma-2"
@@ -13,10 +10,6 @@
         >
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
-        <v-btn @click="goToToday()" text class="ma-2">
-          <v-icon class="mr-2">mdi-calendar</v-icon> Go to Today
-        </v-btn>
-        <v-spacer></v-spacer>
         <v-btn
           icon
           class="ma-2"
@@ -24,7 +17,10 @@
         >
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
-      </v-sheet>
+        <v-toolbar-title>{{ currentDateLocalised }}</v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </v-sheet>
     <v-calendar
       type="month"
       ref="calendar"
