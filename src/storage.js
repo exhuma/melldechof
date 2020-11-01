@@ -8,7 +8,7 @@ function convertIcs(ics) {
     if (ics.hasOwnProperty(k)) {
       const ev = ics[k];
       if (ev.type === "VEVENT") {
-        output.push(new Event(ev.summary, ev.start, ev.end));
+        output.push(new Event(ev.summary, ev.start, ev.end, ev.uid));
       }
     }
   }

@@ -1,11 +1,15 @@
 import { DateTime } from "luxon";
 import { v4 as uuidv4 } from "uuid";
 export class Event {
-  constructor(name, startDate, endDate) {
+  constructor(name, startDate, endDate, id) {
     this.name = name;
     this.start = startDate;
     this.end = endDate;
-    this.id = uuidv4();
+    if (id) {
+      this.id = id
+    } else {
+      this.id = uuidv4();
+    }
   }
 
   static fromISO(name, startDate, endDate) {
