@@ -1,23 +1,26 @@
 <template>
-  <v-list>
-    <v-list-item
-      two-line
-      v-for="gathering in upcomingGatherings"
-      :key="gathering.id"
-    >
-      <v-list-item-content>
-        <v-list-item-title
-          ><router-link :to="`/gathering/${gathering.id}`">{{
-            gathering.name
-          }}</router-link></v-list-item-title
-        >
-        <v-list-item-subtitle
-          >{{ toString(gathering.start) }} -
-          {{ toString(gathering.end) }}</v-list-item-subtitle
-        >
-      </v-list-item-content>
-    </v-list-item>
-  </v-list>
+  <v-container>
+    <h1>Upcoming Gatherings</h1>
+    <v-list>
+      <v-list-item
+        two-line
+        v-for="gathering in upcomingGatherings"
+        :key="gathering.id"
+      >
+        <v-list-item-content>
+          <v-list-item-title
+            ><router-link :to="`/gathering/${gathering.id}`">{{
+              gathering.name
+            }}</router-link></v-list-item-title
+          >
+          <v-list-item-subtitle
+            >{{ toString(gathering.start) }} -
+            {{ toString(gathering.end) }}</v-list-item-subtitle
+          >
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-container>
 </template>
 
 <script>
