@@ -1,4 +1,5 @@
 import { Event } from "@/event.js";
+import { Presence } from "@/enums.js";
 import ical from "ical";
 
 function convertIcs(ics) {
@@ -16,10 +17,6 @@ function convertIcs(ics) {
 }
 
 export class Storage {
-
-  static PRESENT = 'present'
-  static ABSENT = 'absent'
-
   constructor() {
     this.gatherings = [];
     this.presenceList = {};
@@ -47,21 +44,21 @@ export class Storage {
     this.gatherings.push(new Event(name, start, end));
   }
 
-  loadPresences () {
+  loadPresences() {
     this.presenceList = {
-      '4oatu5678cld8gfh0euluj3ip3@google.com': [
-        {name: 'user-1', presence: Storage.PRESENT},
-        {name: 'user-2', presence: Storage.PRESENT},
-        {name: 'user-3', presence: Storage.PRESENT},
+      "4oatu5678cld8gfh0euluj3ip3@google.com": [
+        { name: "user-1", presence: Presence.PRESENT },
+        { name: "user-2", presence: Presence.PRESENT },
+        { name: "user-3", presence: Presence.PRESENT },
       ],
-      '5e1ouudn8cc3sr1atbqqi3dvon@google.com': [
-        {name: 'user-1', presence: Storage.PRESENT},
-        {name: 'user-2', presence: Storage.PRESENT},
-        {name: 'user-3', presence: Storage.ABSENT},
-        {name: 'user-4', presence: Storage.ABSENT},
-        {name: 'user-5', presence: Storage.PRESENT},
-        {name: 'user-6', presence: Storage.ABSENT},
-      ]
-    }
+      "5e1ouudn8cc3sr1atbqqi3dvon@google.com": [
+        { name: "user-1", presence: Presence.PRESENT },
+        { name: "user-2", presence: Presence.UNKNOWN },
+        { name: "user-3", presence: Presence.ABSENT },
+        { name: "user-4", presence: Presence.ABSENT },
+        { name: "user-5", presence: Presence.PRESENT },
+        { name: "user-6", presence: Presence.ABSENT },
+      ],
+    };
   }
 }
