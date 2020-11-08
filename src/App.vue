@@ -1,35 +1,56 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">Mell Dech Of</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-      <v-list dense nav>
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>mdi-calendar</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title> Manage Gatherings </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <v-app-bar
+      app
+      color="white"
+      flat
+    >
+      <v-container class="py-0 fill-height">
+        <v-avatar
+          class="mr-10"
+          color="grey darken-1"
+          size="32"
+        ></v-avatar>
 
-    <v-app-bar app>
-      <!-- -->
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          :to="link.to"
+          text
+        >
+          <v-icon>{{ link.icon }}</v-icon>
+          {{ link.text }}
+        </v-btn>
+      </v-container>
     </v-app-bar>
-    <v-main>
-      <router-view
-        :gatherings="gatherings"
-        :presenceList="presenceList"
-        />
+
+    <v-main class="grey lighten-3">
+      <v-container>
+        <v-row>
+          <v-col cols="2">
+            <v-sheet rounded="md">                
+              TODO<br />
+              context-info
+            </v-sheet>
+          </v-col>
+
+          <v-col>
+            <v-sheet
+              min-height="70vh"
+              rounded="md"
+            >
+              <router-view
+                :gatherings="gatherings"
+                :presenceList="presenceList"
+                />
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
+
 
 <script>
 import { Storage } from "@/storage.js";
@@ -43,7 +64,10 @@ export default {
   },
 
   data: () => ({
-    gatherings: []
+    gatherings: [],
+    links: [
+      {"icon": "mdi-calendar", "text": "Home", "to": "/"},
+    ],
   }),
 
   created () {
