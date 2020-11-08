@@ -1,6 +1,6 @@
 <template>
-  <v-sheet>
-    <v-card>
+  <v-content>
+    <v-card flat>
       <v-card-title> {{ gathering.name }}</v-card-title>
       <v-card-text>
         {{ gathering.start }}<br />
@@ -10,9 +10,8 @@
     <v-data-table
         :headers="headers"
         :items="tableItems"
-        class="elevation-1"
       ></v-data-table>
-  </v-sheet>
+  </v-content>
 </template>
 
 <script>

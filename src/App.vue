@@ -24,7 +24,7 @@
       </v-container>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-main class="dark-bg">
       <v-container>
         <v-row>
           <v-col cols="2">
@@ -40,6 +40,7 @@
               rounded="md"
             >
               <router-view
+                class="pa-0"
                 :gatherings="gatherings"
                 :presenceList="presenceList"
                 />
@@ -79,3 +80,10 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.dark-bg {
+  background-color: #333;
+}
+</style>
