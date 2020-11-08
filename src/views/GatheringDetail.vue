@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-card flat>
       <v-card-title> {{ gathering.name }}</v-card-title>
       <v-card-text>
@@ -16,7 +16,7 @@
         </v-icon>
       </template>
     </v-data-table>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
