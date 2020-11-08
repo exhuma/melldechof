@@ -6,7 +6,7 @@ export class AppLocale {
     return tmp.setLocale("de-DE").toLocaleString(DateTime.DATETIME_MED);
   }
 
-  static formatCalendarDate(value) {
+  static formatCalendarTitle(value) {
     const date = DateTime.fromISO(value);
     return date.toLocaleString({ month: "long", year: "numeric" });
   }
@@ -25,11 +25,6 @@ export class AppLocale {
     const startLuxon = DateTime.fromJSDate(startValue).setLocale(locale);
     const endLuxon = DateTime.fromJSDate(endValue).setLocale(locale);
 
-    if (startLuxon.zoneName !== endLuxon.zoneName) {
-      const tmp1 = startLuxon.toLocaleString(DateTime.DATETIME_FULL);
-      const tmp2 = endLuxon.toLocaleString(DateTime.DATETIME_FULL);
-      return `${tmp1} - ${tmp2}`;
-    }
     const startDate = startLuxon.toFormat("yyyyLLdd");
     const endDate = endLuxon.toFormat("yyyyLLdd");
 

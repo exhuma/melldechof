@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     currentDateLocalised: function () {
-      return AppLocale.formatCalendarDate(this.date)
+      return AppLocale.formatCalendarTitle(this.date)
     }
   },
   methods: {
