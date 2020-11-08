@@ -3,8 +3,7 @@
     <v-card flat>
       <v-card-title> {{ gathering.name }}</v-card-title>
       <v-card-text>
-        {{ gathering.start }}<br />
-        {{ gathering.end }}
+        {{ formatDateTimeRange(gathering.start, gathering.end) }}
       </v-card-text>
     </v-card>
     <v-data-table
@@ -22,6 +21,7 @@
 
 <script>
 import {Presence} from '@/enums.js'
+import { AppLocale } from '@/applocale.js'
 export default {
   name: "GatheringDetail",
   data: () => ({
@@ -41,6 +41,9 @@ export default {
     }
   },
   methods: {
+    formatDateTimeRange(startValue, endValue) {
+      return AppLocale.formatDateTimeRange(startValue, endValue)
+    },
     presenceIcon(value) {
       if (value === Presence.PRESENT) {
         return 'mdi-account-check'

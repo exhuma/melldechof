@@ -14,8 +14,7 @@
             }}</router-link></v-list-item-title
           >
           <v-list-item-subtitle
-            >{{ toString(gathering.start) }} -
-            {{ toString(gathering.end) }}</v-list-item-subtitle
+            >{{ toString(gathering.start, gathering.end) }}</v-list-item-subtitle
           >
         </v-list-item-content>
       </v-list-item>
@@ -24,14 +23,13 @@
 </template>
 
 <script>
-import { DateTime } from "luxon";
+import { AppLocale } from '@/applocale.js'
 export default {
   name: "GatheringList",
   data: () => ({}),
   methods: {
-    toString(date) {
-      const value = DateTime.fromJSDate(date);
-      return value.setLocale("de-DE").toLocaleString(DateTime.DATETIME_MED);
+    toString(start, end) {
+      return AppLocale.formatDateTimeRange(start, end)
     },
   },
   computed: {

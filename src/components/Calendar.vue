@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { DateTime } from 'luxon';
+import { AppLocale } from '@/applocale.js'
 export default {
   name: "Calendar",
   props: {
@@ -44,14 +44,12 @@ export default {
   },
   computed: {
     currentDateLocalised: function () {
-      const date = DateTime.fromISO(this.date)
-      return date.toLocaleString({month: 'long', year: 'numeric'})
+      return AppLocale.formatCalendarDate(this.date)
     }
   },
   methods: {
     goToToday () {
-      const today = DateTime.fromJSDate(new Date())
-      this.date = today.toISODate()
+      this.date = AppLocale.toISODate(new Date())
     },
     onEventClicked ({event}) {
       this.$router.push(`gathering/${event.id}`)
