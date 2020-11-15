@@ -27,13 +27,6 @@
     <v-main class="dark-bg">
       <v-container>
         <v-row>
-          <v-col cols="2">
-            <v-sheet rounded="md">                
-              TODO<br />
-              context-info
-            </v-sheet>
-          </v-col>
-
           <v-col>
             <v-sheet
               min-height="70vh"
