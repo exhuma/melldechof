@@ -43,6 +43,7 @@
                 class="pa-0"
                 :gatherings="gatherings"
                 :presenceList="presenceList"
+                @presenceClicked="onPresenceClicked"
                 />
             </v-sheet>
           </v-col>
@@ -55,6 +56,7 @@
 
 <script>
 import { Storage } from "@/storage.js";
+import { PresenceManager } from "@/presenceManager.js";
 export default {
   name: "App",
 
@@ -62,6 +64,9 @@ export default {
     setPresence: function (payload) {
       console.log(payload);
     },
+    onPresenceClicked: function (presence, eventId) {
+      this.presenceManager.togglePresence(this.storage, presence, eventId)
+    }
   },
 
   data: () => ({
@@ -73,11 +78,13 @@ export default {
 
   created () {
     this.storage = new Storage()
+    this.presenceManager = new PresenceManager()
     this.storage.loadGatherings()
     this.storage.loadPresences()
     this.gatherings = this.storage.gatherings
     this.presenceList = this.storage.presenceList
-  }
+  },
+  
 };
 </script>
 

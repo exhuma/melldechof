@@ -9,6 +9,7 @@
     <v-data-table
         :headers="headers"
         :items="tableItems"
+        @click:row="onRowClicked"
       >
       <template v-slot:item.presence="{ item }">
         <v-icon :class="presenceColor(item.presence)">
@@ -61,6 +62,9 @@ export default {
      } else {
         return 'grey--text text--lighten-3'
       }
+    },
+    onRowClicked (item) {
+      this.$emit("presenceClicked", item, this.$route.params.id)
     }
   },
   computed: {

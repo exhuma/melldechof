@@ -47,18 +47,37 @@ export class Storage {
   loadPresences() {
     this.presenceList = {
       "4oatu5678cld8gfh0euluj3ip3@google.com": [
-        { name: "user-1", presence: Presence.PRESENT },
-        { name: "user-2", presence: Presence.PRESENT },
-        { name: "user-3", presence: Presence.PRESENT },
+        { userId: 1, name: "user-1", presence: Presence.PRESENT },
+        { userId: 2, name: "user-2", presence: Presence.PRESENT },
+        { userId: 3, name: "user-3", presence: Presence.PRESENT },
       ],
       "5e1ouudn8cc3sr1atbqqi3dvon@google.com": [
-        { name: "user-1", presence: Presence.PRESENT },
-        { name: "user-2", presence: Presence.UNKNOWN },
-        { name: "user-3", presence: Presence.ABSENT },
-        { name: "user-4", presence: Presence.ABSENT },
-        { name: "user-5", presence: Presence.PRESENT },
-        { name: "user-6", presence: Presence.ABSENT },
+        { userId: 1, name: "user-1", presence: Presence.PRESENT },
+        { userId: 2, name: "user-2", presence: Presence.UNKNOWN },
+        { userId: 3, name: "user-3", presence: Presence.ABSENT },
+        { userId: 4, name: "user-4", presence: Presence.ABSENT },
+        { userId: 5, name: "user-5", presence: Presence.PRESENT },
+        { userId: 6, name: "user-6", presence: Presence.ABSENT },
       ],
     };
+  }
+
+  getPresence(userId, eventId) {
+    const event = this.presenceList[eventId];
+    if (!event) {
+      return Presence.UNKNOWN;
+    }
+    const presence = event.find((element) => element.userId === userId);
+    console.log(presence.presence);
+    return presence.presence;
+  }
+
+  setPresence(userId, eventId, newPresence) {
+    const event = this.presenceList[eventId];
+    if (!event) {
+      return null;
+    }
+    const presence = event.find((element) => element.userId === userId);
+    return (presence.presence = newPresence);
   }
 }
