@@ -61,7 +61,7 @@ export default {
      } else if (value === Presence.ABSENT) {
         return 'green--text text--lighten-3'
      } else {
-        return 'grey--text text--lighten-3'
+        return 'grey--text text--lighten-2'
       }
     },
     onRowClicked (item) {
