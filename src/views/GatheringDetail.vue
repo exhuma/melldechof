@@ -23,6 +23,7 @@
 <script>
 import {Presence} from '@/enums.js'
 import { AppLocale } from '@/applocale.js'
+import { Event } from '@/event.js'
 export default {
   name: "GatheringDetail",
   data: () => ({
@@ -75,6 +76,9 @@ export default {
       let gathering = this.gatherings.find(
         (element) => element.id === this.$route.params.id
       );
+      if (!gathering) {
+        return new Event()
+      }
       return gathering;
     }
   },
