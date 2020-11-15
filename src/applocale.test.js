@@ -37,3 +37,11 @@ test("Range formatting: different day", () => {
   let expected = "3. März 1901, 04:05 - 4. Apr. 1902, 04:05";
   expect(result).toBe(expected);
 });
+
+test("Range formatting: different zones", () => {
+  const start = new Date(1, 2, 3, 4, 5);
+  const end = new Date(2, 3, 4, 4, 5);
+  let result = AppLocale.formatDateTimeRange(start, end);
+  let expected = "3. März 1901, 04:05 - 4. Apr. 1902, 04:05";
+  expect(result).toBe(expected);
+});
