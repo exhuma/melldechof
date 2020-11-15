@@ -68,7 +68,6 @@ export class Storage {
       return Presence.UNKNOWN;
     }
     const presence = event.find((element) => element.userId === userId);
-    console.log(presence.presence);
     return presence.presence;
   }
 
