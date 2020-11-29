@@ -64,18 +64,19 @@ export default {
 
   data: () => ({
     gatherings: [],
+    presenceList: {},
     links: [
       {"icon": "mdi-calendar", "text": "Home", "to": "/"},
     ],
   }),
 
-  created () {
+  async created () {
     this.storage = new Storage()
     this.presenceManager = new PresenceManager()
     this.storage.loadGatherings()
-    this.storage.loadPresences()
+    const presences = await this.storage.loadPresences()
     this.gatherings = this.storage.gatherings
-    this.presenceList = this.storage.presenceList
+    this.presenceList = presences
   },
   
 };

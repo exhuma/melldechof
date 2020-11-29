@@ -29,7 +29,7 @@ export default {
   data: () => ({
     headers: [
       {text: 'Presence', value: 'presence', width: "9em", align: "right"},
-      {text: 'Name', value: 'name'},
+      {text: 'Name', value: 'userName'},
     ],
   }),
   props: {

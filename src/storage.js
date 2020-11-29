@@ -1,5 +1,4 @@
 import { Event } from "@/event.js";
-import { Presence } from "@/enums.js";
 import ical from "ical";
 
 function convertIcs(ics) {
@@ -19,12 +18,12 @@ function convertIcs(ics) {
 export class Storage {
   constructor() {
     this.gatherings = [];
-    this.presenceList = {};
+    this.baseUrl = "http://localhost:8000";
   }
 
   loadGatherings() {
     this.gatherings = [];
-    fetch("http://localhost:8000/ical").then((response) => {
+    fetch(`${this.baseUrl}/ical`).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           const data = ical.parseICS(json.ics);
@@ -44,39 +43,32 @@ export class Storage {
     this.gatherings.push(new Event(name, start, end));
   }
 
-  loadPresences() {
-    this.presenceList = {
-      "4oatu5678cld8gfh0euluj3ip3@google.com": [
-        { userId: 1, name: "user-1", presence: Presence.PRESENT },
-        { userId: 2, name: "user-2", presence: Presence.PRESENT },
-        { userId: 3, name: "user-3", presence: Presence.PRESENT },
-      ],
-      "5e1ouudn8cc3sr1atbqqi3dvon@google.com": [
-        { userId: 1, name: "user-1", presence: Presence.PRESENT },
-        { userId: 2, name: "user-2", presence: Presence.UNKNOWN },
-        { userId: 3, name: "user-3", presence: Presence.ABSENT },
-        { userId: 4, name: "user-4", presence: Presence.ABSENT },
-        { userId: 5, name: "user-5", presence: Presence.PRESENT },
-        { userId: 6, name: "user-6", presence: Presence.ABSENT },
-      ],
-    };
+  async loadPresences() {
+    let response = await fetch(`${this.baseUrl}/presences`);
+    let json = await response.json();
+    let output = {};
+    json.presences.forEach((item) => {
+      if (!(item["event_id"] in output)) {
+        output[item["event_id"]] = [];
+      }
+      output[item["event_id"]].push({
+        userId: item["user_id"],
+        userName: item["user_name"],
+        presence: item["presence"],
+      });
+    });
+    return output;
   }
 
   getPresence(userId, eventId) {
-    const event = this.presenceList[eventId];
-    if (!event) {
-      return Presence.UNKNOWN;
-    }
-    const presence = event.find((element) => element.userId === userId);
-    return presence.presence;
+    console.log(userId, eventId); // TODO <- Remove this line!
+    return "unknown";
   }
 
-  setPresence(userId, eventId, newPresence) {
-    const event = this.presenceList[eventId];
-    if (!event) {
-      return null;
-    }
-    const presence = event.find((element) => element.userId === userId);
-    return (presence.presence = newPresence);
+  async setPresence(userId, eventId, newPresence) {
+    const url = `${this.baseUrl}/presence/${userId}/${eventId}/${newPresence}`;
+    await fetch(url, {
+      method: "PUT",
+    });
   }
 }
