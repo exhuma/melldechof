@@ -18,6 +18,7 @@ function convertIcs(ics) {
 export class Storage {
   constructor() {
     this.gatherings = [];
+    this.presenceList = {};
     this.baseUrl = "http://localhost:8000";
   }
 
@@ -46,29 +47,37 @@ export class Storage {
   async loadPresences() {
     let response = await fetch(`${this.baseUrl}/presences`);
     let json = await response.json();
-    let output = {};
     json.presences.forEach((item) => {
-      if (!(item["event_id"] in output)) {
-        output[item["event_id"]] = [];
+      if (!(item["event_id"] in this.presenceList)) {
+        this.presenceList[item["event_id"]] = {};
       }
-      output[item["event_id"]].push({
+      this.presenceList[item["event_id"]][item["user_id"]] = {
         userId: item["user_id"],
         userName: item["user_name"],
         presence: item["presence"],
-      });
+      };
     });
-    return output;
   }
 
-  getPresence(userId, eventId) {
-    console.log(userId, eventId); // TODO <- Remove this line!
-    return "unknown";
+  async getPresence(userId, eventId) {
+    let response = await fetch(
+      `${this.baseUrl}/presences/${eventId}/${userId}`
+    );
+    if (!response.ok) {
+      console.error(response);
+      return "unknown";
+    }
+    let json = await response.json();
+    return json["presence"];
   }
 
   async setPresence(userId, eventId, newPresence) {
     const url = `${this.baseUrl}/presence/${userId}/${eventId}/${newPresence}`;
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "PUT",
     });
+    if (response.ok) {
+      this.presenceList[eventId][userId].presence = newPresence;
+    }
   }
 }

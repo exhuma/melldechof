@@ -66,7 +66,12 @@ export default {
   },
   computed: {
     tableItems: function () {
-      return this.storage.presenceList[this.$route.params.id]
+      let mapping = this.storage.presenceList[this.$route.params.id]
+      let output = []
+      for (let key in mapping) {
+        output.push(mapping[key])
+      }
+      return output
     },
     gathering: function () {
       let gathering = this.storage.gatherings.find(
