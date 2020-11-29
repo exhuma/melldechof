@@ -54,9 +54,6 @@ export default {
   name: "App",
 
   methods: {
-    setPresence: function (payload) {
-      console.log(payload);
-    },
     onPresenceClicked: function (presence, eventId) {
       this.presenceManager.togglePresence(this.storage, presence, eventId)
     }
