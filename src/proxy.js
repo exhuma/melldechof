@@ -3,15 +3,6 @@ export class Proxy {
     this.backendUrl = backendUrl;
   }
 
-  async test() {
-    const response = await fetch(`${this.backendUrl}/fail`);
-    const json = await response.json();
-    if (!json.ok) {
-      throw new Error('Error')
-    }
-    return json
-  }
-
   async fetchGatherings() {
     const response = await fetch(`${this.backendUrl}/gatherings`);
     return response.json();
