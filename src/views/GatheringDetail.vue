@@ -33,11 +33,7 @@ export default {
     ],
   }),
   props: {
-    gatherings: {
-      type: Array,
-      required: true,
-    },
-    presenceList: {
+    storage: {
       type: Object,
       required: true
     }
@@ -70,10 +66,10 @@ export default {
   },
   computed: {
     tableItems: function () {
-      return this.presenceList[this.$route.params.id]
+      return this.storage.presenceList[this.$route.params.id]
     },
     gathering: function () {
-      let gathering = this.gatherings.find(
+      let gathering = this.storage.gatherings.find(
         (element) => element.id === this.$route.params.id
       );
       if (!gathering) {

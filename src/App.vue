@@ -34,8 +34,7 @@
             >
               <router-view
                 class="pa-0"
-                :gatherings="gatherings"
-                :presenceList="presenceList"
+                :storage="storage"
                 @presenceClicked="onPresenceClicked"
                 />
             </v-sheet>
@@ -48,6 +47,7 @@
 
 
 <script>
+import Vue from "vue";
 import { Storage } from "@/storage.js";
 import { PresenceManager } from "@/presenceManager.js";
 export default {
@@ -63,20 +63,16 @@ export default {
   },
 
   data: () => ({
-    gatherings: [],
-    presenceList: {},
     links: [
       {"icon": "mdi-calendar", "text": "Home", "to": "/"},
     ],
   }),
 
   async created () {
-    this.storage = new Storage()
+    this.storage = Vue.observable(new Storage())
     this.presenceManager = new PresenceManager()
     this.storage.loadGatherings()
-    const presences = await this.storage.loadPresences()
-    this.gatherings = this.storage.gatherings
-    this.presenceList = presences
+    this.storage.loadPresences()
   },
   
 };

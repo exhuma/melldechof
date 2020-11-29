@@ -36,7 +36,7 @@ export default {
     upcomingGatherings: function () {
       const output = [];
       const now = new Date();
-      this.gatherings.forEach((element) => {
+      this.storage.gatherings.forEach((element) => {
         if (element.end >= now) {
           output.push(element);
         }
@@ -45,8 +45,8 @@ export default {
     },
   },
   props: {
-    gatherings: {
-      type: Array,
+    storage: {
+      type: Object,
       required: true,
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <Calendar :gatherings="gatherings" />
-    <GatheringList :gatherings="gatherings" />
+    <Calendar :storage="storage" />
+    <GatheringList :storage="storage" />
   </v-container>
 </template>
 
@@ -11,8 +11,8 @@ import GatheringList from "@/components/GatheringList.vue";
 export default {
   name: "ManageGatherings",
   props: {
-    gatherings: {
-      type: Array,
+    storage: {
+      type: Object,
       required: true,
     }
   },

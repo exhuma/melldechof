@@ -28,7 +28,7 @@
       v-model="date"
       @click:event="onEventClicked"
       :weekdays="[1, 2, 3, 4, 5, 6, 0]"
-      :events="gatherings"></v-calendar>
+      :events="storage.gatherings"></v-calendar>
   </v-sheet>
 </template>
 
@@ -37,8 +37,8 @@ import { AppLocale } from '@/applocale.js'
 export default {
   name: "Calendar",
   props: {
-    gatherings: {
-      type: Array,
+    storage: {
+      type: Object,
       required: true,
     },
   },
